@@ -19,6 +19,7 @@
                 AutoGenerateColumns="false"
                 OnPageIndexChanging="customerPayments_PageIndexChanging"
                 OnSorting="customerPayments_Sorting"
+                OnDataBound="customerPayments_DataBound"
                 GridLines="None"
                 CellPadding="5"
                 CellSpacing="5"

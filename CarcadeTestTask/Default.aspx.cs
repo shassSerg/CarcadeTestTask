@@ -32,6 +32,35 @@ namespace CarcadeTestTask
         }
 
         /// <summary>
+        /// Устанавливает стрелки сортировки
+        /// </summary>
+        private void SetArrowsBySorting(SortDirection sortDirection, string sortExpression)
+        {
+            if (!string.IsNullOrWhiteSpace(sortExpression))
+            {
+                foreach (TableCell tc in customerPayments.HeaderRow.Cells)
+                {
+                    if (tc.HasControls())
+                    {
+                        var lnk = (LinkButton)tc.Controls[0];
+                        if (lnk != null && sortExpression == lnk.CommandArgument)
+                        {
+                            var imageUrl = "~/img/icon_" + (sortDirection == SortDirection.Ascending ? "asc" : "desc") + ".png";
+
+                            tc.Controls.Add(new LiteralControl(" "));
+                            tc.Controls.Add(new Image
+                            {
+                                ImageUrl = imageUrl,
+                                Width = 15,
+                                Height = 15
+                            });
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Загружает платежи
         /// </summary>
         private void LoadPayments()
@@ -104,6 +133,14 @@ namespace CarcadeTestTask
         protected void filterButton_Click(object sender, EventArgs e)
         {
             LoadPayments();
+        }
+
+        protected void customerPayments_DataBound(object sender, EventArgs e)
+        {
+            var sortDirection = (SortDirection?)ViewState[nameof(SortDirection)] ?? SortDirection.Ascending;
+            var sortExpression = ViewState[nameof(GridView.SortExpression)]?.ToString();
+
+            SetArrowsBySorting(sortDirection, sortExpression);
         }
     }
 }
