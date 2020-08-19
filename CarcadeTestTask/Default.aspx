@@ -5,7 +5,9 @@
     <asp:UpdatePanel ID="customerPaymentsUpdatePanel" runat="server">
         <ContentTemplate>
             <div class="customers-payments-control">
+                <asp:Label ID="dataLabel" runat="server" Text="Дата платежа:" />
                 <asp:textbox id="datePicker" runat="server" cssclass="datepicker"/>
+                <asp:Label ID="customerNameLabel" runat="server" Text="Наименование контроагента:" />
                 <asp:textbox id="customerName" runat="server"/>
                 <asp:Button ID="filterButton" Text="Отфильтровать" runat="server" OnClick="filterButton_Click" />
             </div>

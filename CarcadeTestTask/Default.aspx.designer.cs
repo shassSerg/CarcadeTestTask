@@ -24,6 +24,15 @@ namespace CarcadeTestTask
         protected global::System.Web.UI.UpdatePanel customerPaymentsUpdatePanel;
 
         /// <summary>
+        /// dataLabel элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dataLabel;
+
+        /// <summary>
         /// datePicker элемент управления.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace CarcadeTestTask
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox datePicker;
+
+        /// <summary>
+        /// customerNameLabel элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label customerNameLabel;
 
         /// <summary>
         /// customerName элемент управления.
