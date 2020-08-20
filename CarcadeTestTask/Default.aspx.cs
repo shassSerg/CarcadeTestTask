@@ -96,7 +96,8 @@ namespace CarcadeTestTask
                     Customer = payment.Customer?.CustomerName
                 });
 
-            // Сортировка
+            // Сортировка, также можно перенести в запрос, но если понадобится сортировать коллекцию в сессии, то придется доделывать
+            // На относительно небольшой выборке данных, такой алгоритм уместен, но его нужно будет оптимизировать для большой выборки данных (переносить все SQL запрос (сортировку и пэйджинг))
             var sortSetting = GetSortSetting();
  
             if (!string.IsNullOrWhiteSpace(sortSetting.SortExpression) &&
