@@ -26,7 +26,7 @@ namespace CarcadeTestTask.Models
         /// <summary>
         /// Дата платежа
         /// </summary>
-        [Required, StringLength(100), Display(Name = "Дата платежа")]
+        [Required, Display(Name = "Дата платежа")]
         public DateTime PaymentDate { set; get; }
 
         /// <summary>

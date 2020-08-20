@@ -232,7 +232,7 @@ namespace CarcadeTestTask.Helpers
 
             //    if (date.HasValue)
             //    {
-            //        query += $" and pay.{nameof(Payment.PaymentDate)}='{date.Value.ToString("yyyy-MM-dd HH:mm:ss.fff")}'";
+            //        query += $" and convert(date, pay.{nameof(Payment.PaymentDate)})=convert(date, '{date.Value.ToString("yyyy-MM-dd HH:mm:ss.fff")}')";
             //    }
 
             //    if (!string.IsNullOrWhiteSpace(nameCustomer))
