@@ -61,6 +61,17 @@ namespace CarcadeTestTask
         }
 
         /// <summary>
+        /// Получает настрйоки сортировки
+        /// </summary>
+        private (SortDirection SortDirection, string SortExpression) GetSortSetting()
+        {
+            var sortDirection = (SortDirection?)ViewState[nameof(SortDirection)] ?? SortDirection.Ascending;
+            var sortExpression = ViewState[nameof(GridView.SortExpression)]?.ToString();
+
+            return (SortDirection: sortDirection, SortExpression: sortExpression);
+        }
+
+        /// <summary>
         /// Загружает платежи
         /// </summary>
         private void LoadPayments()
@@ -85,17 +96,16 @@ namespace CarcadeTestTask
                 });
 
             // Сортировка
-            var sortDirection = (SortDirection?)ViewState[nameof(SortDirection)] ?? SortDirection.Ascending;
-            var sortExpression = ViewState[nameof(GridView.SortExpression)]?.ToString();
+            var sortSetting = GetSortSetting();
  
-            if (!string.IsNullOrWhiteSpace(sortExpression) &&
+            if (!string.IsNullOrWhiteSpace(sortSetting.SortExpression) &&
                 payments.Any())
             {
-                var property = payments.First().GetType().GetProperty(sortExpression);
+                var property = payments.First().GetType().GetProperty(sortSetting.SortExpression);
 
                 if (property != null)
                 {
-                    payments = sortDirection == SortDirection.Ascending ?
+                    payments = sortSetting.SortDirection == SortDirection.Ascending ?
                         payments.OrderBy(payment => property.GetValue(payment))
                         : payments.OrderByDescending(payment => property.GetValue(payment));
                 }
@@ -137,10 +147,9 @@ namespace CarcadeTestTask
 
         protected void customerPayments_DataBound(object sender, EventArgs e)
         {
-            var sortDirection = (SortDirection?)ViewState[nameof(SortDirection)] ?? SortDirection.Ascending;
-            var sortExpression = ViewState[nameof(GridView.SortExpression)]?.ToString();
+            var sortSetting = GetSortSetting();
 
-            SetArrowsBySorting(sortDirection, sortExpression);
+            SetArrowsBySorting(sortSetting.SortDirection, sortSetting.SortExpression);
         }
     }
 }
