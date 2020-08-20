@@ -36,7 +36,8 @@ namespace CarcadeTestTask
         /// </summary>
         private void SetArrowsBySorting(SortDirection sortDirection, string sortExpression)
         {
-            if (!string.IsNullOrWhiteSpace(sortExpression))
+            if (!string.IsNullOrWhiteSpace(sortExpression) &&
+                customerPayments.HeaderRow?.Cells != null)
             {
                 foreach (TableCell tc in customerPayments.HeaderRow.Cells)
                 {
